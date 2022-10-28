@@ -20,7 +20,6 @@ const FormEditProduct = () => {
   let params = useParams();
   useEffect(() => {
     managerProduct.fetchDetailProduct(params.id).then((res) => {
-      console.log(res);
       setForm(res);
     });
   }, []);
