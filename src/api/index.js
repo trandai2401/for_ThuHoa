@@ -58,4 +58,24 @@ export const managerProduct = {
       });
     return res;
   },
+  createProduct: async (value) => {
+    const { name, category, manufacturer, price, description, files } = value;
+    const data = new FormData();
+    data.append('name', name);
+    data.append('category', category);
+    data.append('manufacturer', manufacturer);
+    data.append('price', price);
+    data.append('description', description);
+
+    files.forEach((e) => {
+      data.append('files', e);
+    });
+
+    console.log(name, category, manufacturer, price, description, files);
+    const rs = await axiosInstance.post('/products', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  },
 };

@@ -5,12 +5,13 @@ import Button from '../Button';
 import DetailFormProduct from '../DetailFormProduct/DetailFormProduct';
 import UploadControl from '../UploadControl/UploadControl';
 import { Icon } from '@iconify-icon/react';
-
+import { managerProduct } from '../../api/index';
 const FormAddProduct = () => {
   const [form, setForm] = useState({ files: [] });
   // console.log(form);
   const onSubmit = () => {
     console.log(form);
+    managerProduct.createProduct(form);
   };
   return (
     <>

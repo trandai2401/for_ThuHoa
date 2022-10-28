@@ -81,9 +81,9 @@ const DetailFormProduct = ({
           </label>
           <div className="input-group mb-1">
             <SelectOption
-              name="manufacturers"
+              name="manufacturer"
               onChange={onChangeInput}
-              value={form.manufacturers}
+              value={form.manufacturer}
               title="Chọn hãng sản xuất"
               data={manufacturers}
             />
