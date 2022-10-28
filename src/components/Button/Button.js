@@ -10,28 +10,15 @@ const Button = ({
   dataToggle,
   dataTarget,
   dataWhatever,
-  dataDismiss,
-  id,
+  onClick = () => {},
 }) => {
-  const pathCurrent = window.location.pathname.slice(1);
-  let [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const query = {};
-  searchParams.forEach((value, key) => {
-    query[key] = value;
-  });
-
-  query.pageSelected = query.pageSelected ?? 1;
   return (
     <>
       <button
         type={type}
-        className={`${classname} ${
-          query.pageSelected == title ? 'phan-trang-selected' : ''
-        }`}
+        className={`${classname} `}
         onClick={() => {
-          query.pageSelected = title;
-          navigate(`/${pathCurrent}?` + toQuery(query));
+          onClick();
         }}
         data-toggle={dataToggle}
         data-target={dataTarget}

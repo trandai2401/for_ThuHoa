@@ -10,7 +10,6 @@ const FormAddProduct = () => {
   const [form, setForm] = useState({ name: '', files: [] });
   // console.log(form);
   const onSubmit = () => {
-    console.log(form);
     managerProduct.createProduct(form);
   };
   return (

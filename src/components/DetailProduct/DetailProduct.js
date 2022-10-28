@@ -27,7 +27,6 @@ const DetailProduct = ({ category, manufacturer }) => {
     });
     managerProduct.fetchRelateProduct(params.id).then((res) => {
       setRelatedProduct(res.data.data);
-      console.log(res.data.data);
     });
   }, [params.id]);
 
