@@ -8,7 +8,10 @@ import { Icon } from '@iconify-icon/react';
 
 const FormAddProduct = () => {
   const [form, setForm] = useState({ files: [] });
-
+  // console.log(form);
+  const onSubmit = () => {
+    console.log(form);
+  };
   return (
     <>
       <Button
@@ -51,6 +54,8 @@ const FormAddProduct = () => {
               />
               <div className="form-group mb-1">
                 <UploadControl
+                  form={form}
+                  setForm={setForm}
                   title_upload="Thêm hình ảnh sản phẩm"
                   classname="upload_tagHtml"
                 />
@@ -76,6 +81,7 @@ const FormAddProduct = () => {
                 Hủy
               </button>
               <button
+                onClick={onSubmit}
                 id="btn_them"
                 type="button"
                 className="btn"

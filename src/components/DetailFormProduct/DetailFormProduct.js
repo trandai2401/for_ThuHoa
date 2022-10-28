@@ -15,8 +15,7 @@ const DetailFormProduct = ({
     // console.log(12);
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-  // const onChangeSelect= ()=>{}
-  console.log(form);
+
   return (
     <>
       <form className="form-horizontal">
