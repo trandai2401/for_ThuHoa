@@ -17,8 +17,8 @@ const Button = ({
       <button
         type={type}
         className={`${classname} `}
-        onClick={() => {
-          onClick();
+        onClick={(event) => {
+          onClick(event);
         }}
         data-toggle={dataToggle}
         data-target={dataTarget}

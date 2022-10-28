@@ -23,7 +23,7 @@ const CardProduct = ({ name, price, images, _id }) => {
           </div>
 
           {pathCurrent == 'quan-ly' ? (
-            <TitleCardProduct />
+            <TitleCardProduct id={_id} />
           ) : (
             <div className="product-price text-left ml-3">
               {formatter.format(price)}

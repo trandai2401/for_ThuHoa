@@ -86,4 +86,14 @@ export const managerProduct = {
         console.log(e);
       });
   },
+  removeProduct: async (id) => {
+    const response = await axiosInstance
+      .delete(`/products/${id}`)
+      .then((response) => {
+        // làm chi đó như tắt thông bấu
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
 };
