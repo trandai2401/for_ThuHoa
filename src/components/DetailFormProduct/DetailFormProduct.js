@@ -11,6 +11,7 @@ const DetailFormProduct = ({
   form,
   setForm,
 }) => {
+  console.log(form);
   const onChangeInput = (e) => {
     // console.log(12);
     setForm({ ...form, [e.target.name]: e.target.value });
