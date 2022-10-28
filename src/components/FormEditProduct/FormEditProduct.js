@@ -1,11 +1,29 @@
 import { Icon } from '@iconify-icon/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { managerProduct } from '../../api';
 import DetailFormProduct from '../DetailFormProduct/DetailFormProduct';
 import ImageUpdate from '../ImageUpdate/ImageUpdate';
 import UploadControl from '../UploadControl/UploadControl';
 import './FormEditProduct.css';
-
+const infoProduct = {
+  name: '',
+  category: null,
+  description: '',
+  manufacturer: null,
+  price: '',
+  images: [],
+  files: [],
+};
 const FormEditProduct = () => {
+  const [form, setForm] = useState(infoProduct);
+  let params = useParams();
+  useEffect(() => {
+    managerProduct.fetchDetailProduct(params.id).then((res) => {
+      console.log(res);
+      setForm(res);
+    });
+  }, []);
   const icon_upload = (
     <Icon
       icon="fa:plus"
@@ -25,7 +43,7 @@ const FormEditProduct = () => {
 
         <div className="d-flex justify-content-between">
           <div className="form-edit mx-1">
-            <DetailFormProduct />
+            <DetailFormProduct form={form} setForm={setForm} />
           </div>
           <div className="images-manager mx-1">
             <label htmlFor="recipient-name" className="col-form-label">
@@ -41,7 +59,7 @@ const FormEditProduct = () => {
               />
             </label>
             <div className="upload-img-illustrating text-center">
-              <ImageUpdate classname="illustrating" />
+              <ImageUpdate classname="illustrating" url={form.images[0]} />
             </div>
             <label htmlFor="recipient-name" className="col-form-label">
               Ảnh slide
@@ -56,11 +74,15 @@ const FormEditProduct = () => {
               />
             </label>
             <div className="change-img-slide text-center">
-              <ImageUpdate classname="img-slide my-3" />
-              <ImageUpdate classname="img-slide my-3" />
-              <ImageUpdate classname="img-slide my-3" />
+              {form.images.length > 1
+                ? form.images.map((e) => (
+                    <ImageUpdate classname="img-slide my-3" url={e} />
+                  ))
+                : null}
 
               <UploadControl
+                form={form}
+                setForm={setForm}
                 title_upload={icon_upload}
                 classname="plus-upload-btn"
               />

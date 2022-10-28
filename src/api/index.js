@@ -72,10 +72,18 @@ export const managerProduct = {
     });
 
     console.log(name, category, manufacturer, price, description, files);
-    const rs = await axiosInstance.post('/products', data, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const rs = await axiosInstance
+      .post('/products', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((rs) => {
+        // làm chi đó
+        return rs;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   },
 };

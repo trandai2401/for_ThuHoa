@@ -7,7 +7,7 @@ import UploadControl from '../UploadControl/UploadControl';
 import { Icon } from '@iconify-icon/react';
 import { managerProduct } from '../../api/index';
 const FormAddProduct = () => {
-  const [form, setForm] = useState({ files: [] });
+  const [form, setForm] = useState({ name: '', files: [] });
   // console.log(form);
   const onSubmit = () => {
     console.log(form);

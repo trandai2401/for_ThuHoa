@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { button_classname } from '../../constants/string';
 import Button from '../Button/Button';
-const ImageUpdate = ({ classname }) => {
+const ImageUpdate = ({ classname, url }) => {
   const [isHovered, setHover] = useState(false);
   return (
     <>
@@ -10,8 +10,7 @@ const ImageUpdate = ({ classname }) => {
         onMouseOver={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <img src="http://localhost:5000/xeOtoBMW.png" className={classname} />
-
+        <img src={`http://localhost:5000/${url}`} className={classname} />
         {isHovered && (
           <div className={`tow-btn-${classname}`}>
             <Button title="Cập nhật" classname={button_classname.editImg} />
