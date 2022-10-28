@@ -1,0 +1,25 @@
+.container-detail-product {
+    margin: 50px 20px 0px 40px;
+    width: 90%;
+    height: auto;
+    background-color: #fff;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 40px 30px 40px 70px
+}
+
+.content-product {
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin-top: 10px
+}
+
+.content-product-left {
+    width: 50%;
+}
+
+.sile-product {
+    width: 50%;
+    height: 300px;
+}

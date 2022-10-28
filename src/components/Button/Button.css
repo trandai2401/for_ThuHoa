@@ -1,0 +1,79 @@
+.them-sanpham,
+.phan-trang {
+    border: #00ADE8 1px solid;
+    color: #00ADE8;
+    padding: 10px 20px;
+    height: auto;
+    border-radius: 5px;
+    margin: 3px;
+    background: transparent;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.phan-trang-selected {
+    background: #00ADE8;
+    color: #ffffff
+}
+
+button:focus {
+    outline: none;
+    cursor: pointer;
+}
+
+.phan-trang:active {
+    color: #ffffff;
+    font-weight: 700;
+    background: #00ADE8;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.back-btn {
+    border: none;
+    color: #00ADE8;
+    background: transparent;
+}
+
+.back-btn:hover {
+    font-weight: 500;
+}
+
+.them-sanpham {
+    position: relative;
+    top: 30px;
+    left: 50px;
+}
+
+.cap-nhat,
+.xoa {
+    height: 40px;
+    width: 80px;
+    border: none;
+    margin: 0px 5px 0px;
+    padding: 5px;
+    border-radius: 3px;
+    color: white;
+    z-index: 99999;
+}
+
+.cap-nhat {
+    background: #6ecb63
+}
+
+.cap-nhat:hover,
+.xoa:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.xoa {
+    background: #ff4d4d
+}
+
+.edit-img {
+    width: 100px;
+    height: 40px;
+    margin: 5px;
+    background: rgba(74, 74, 74, 0.8);
+    border: white 1px solid;
+    color: white;
+    border-radius: 4px;
+}

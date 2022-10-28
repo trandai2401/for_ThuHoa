@@ -1,0 +1,6 @@
+.navbar {
+    position: fixed;
+    width: 20%;
+    height: 400px;
+    display: flex;
+}

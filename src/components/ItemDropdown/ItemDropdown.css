@@ -1,0 +1,13 @@
+p {
+    cursor: pointer;
+
+}
+
+p:hover {
+    font-weight: bold;
+}
+
+.p-selected {
+    color: #39bbe8;
+    font-weight: bold;
+}

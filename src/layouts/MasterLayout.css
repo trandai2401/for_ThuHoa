@@ -1,0 +1,16 @@
+* {
+    margin: 0 0;
+}
+
+.body {
+    display: flex;
+    height: auto;
+    position: relative;
+    padding-top: 64px;
+}
+
+.body-content {
+    width: 80%;
+    background: rgba(212, 213, 216, 0.4);
+    height: 2000px
+}

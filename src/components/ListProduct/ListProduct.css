@@ -1,0 +1,9 @@
+.container-list-product {
+    width: 90%;
+    height: auto;
+    background-color: #fff;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 30px;
+    margin: 120px auto;
+}

@@ -1,0 +1,102 @@
+.header {
+    height: 64px;
+    width: 100%;
+    background: #00ADE8;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    z-index: 999999;
+}
+
+.logo_ncc {
+    width: 10%;
+    height: auto;
+    padding: 0 5px 0 20px;
+}
+
+.logo_ncc img {
+    padding: 0 10px 0 0
+}
+
+.logo_ncc h2 {
+    margin: 0;
+    color: #fff;
+    font-weight: 750;
+}
+
+.logo_ncc div {
+    display: flex;
+}
+
+.menu_header {
+    width: 40%;
+    display: flex;
+    height: auto;
+
+}
+
+.menu_header a {
+    text-decoration: none;
+    margin-bottom: 0;
+    color: #fff;
+}
+
+.menu_header a:focus {
+    font-weight: 500;
+}
+
+.header .empty {
+    width: calc(100% - 10% - 40%)
+}
+
+/* ADD responsive */
+
+@media screen and (min-width : 768px) and (max-width : 1024px) {
+
+    /* Styles */
+    .logo_ncc {
+        width: 20%;
+        height: auto;
+        padding: 0 5px 0 20px;
+    }
+
+    .menu_header {
+        width: 50%;
+        display: flex;
+        height: auto;
+    }
+
+    .header .empty {
+        width: calc(100% - 20% - 50%)
+    }
+}
+
+@media screen and (min-width : 320px) and (max-width : 767px) {
+
+    .header {
+        flex-direction: row-reverse;
+
+    }
+
+    .logo_ncc {
+        display: none
+    }
+
+    .logo_ncc img {
+        width: 45px;
+        height: auto;
+    }
+
+    .logo_ncc h2 {
+        display: none;
+    }
+
+    .menu_header {
+        width: 90%;
+        display: flex;
+        height: auto;
+        font-size: 12px;
+
+    }
+}

@@ -1,0 +1,9 @@
+.imgProduct {
+    width: 80%;
+    height: 300px;
+    object-fit: contain;
+    padding: 30px;
+    background: rgba(176, 188, 188, 0.7);
+    border-radius: 5px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
