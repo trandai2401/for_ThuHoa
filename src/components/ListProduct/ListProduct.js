@@ -5,15 +5,13 @@ import './ListProduct.css';
 import { fetchProducts } from '../../actions/products.action';
 import Pagination from '../Pagination/Pagination';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-
+import { setTrueLoading, setFalseLoading } from '../../actions/spinner.action';
 const ListProduct = ({
   products,
   fetchProducts,
   count,
-  pageSelected,
-  categorySelected,
-  manufacturerSelected,
-  searchProduct,
+  setTrueLoading,
+  setFalseLoading,
 }) => {
   let [searchParams] = useSearchParams();
   const query = {
@@ -27,7 +25,13 @@ const ListProduct = ({
   });
   useEffect(
     () => {
-      fetchProducts({ ...query });
+      async function func() {
+        setTrueLoading();
+        await fetchProducts({ ...query });
+        setFalseLoading();
+      }
+      func();
+      // await fetchProducts({ ...query });
     },
     [...Object.values(query)],
     count,
@@ -59,4 +63,8 @@ const mapstateToProps = (state) => {
     searchProduct: state.products.searchProduct,
   };
 };
-export default connect(mapstateToProps, { fetchProducts })(ListProduct);
+export default connect(mapstateToProps, {
+  fetchProducts,
+  setTrueLoading,
+  setFalseLoading,
+})(ListProduct);

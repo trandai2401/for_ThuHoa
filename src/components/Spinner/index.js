@@ -1,28 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import './spinner.css';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { connect } from 'react-redux';
-function useSpinner(props) {
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    ReactDOM.createPortal(
-      <>
-        <div className="background-grey">
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-          <p className="spinner-loading">Đang tải ...</p>
+import { useEffect } from 'react';
+function Spinner({ isLoading }) {
+  return isLoading ? (
+    <>
+      <div className="background-grey">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
         </div>
-      </>,
-      document.getElementById('modal-root'),
-    );
-  });
-  return [isLoading, setIsLoading];
+        <p className="spinner-loading">Đang tải ...</p>
+      </div>
+    </>
+  ) : (
+    ''
+  );
 }
 const mapStateToProps = (state) => {
-  return { isLoading: state.spinner.state };
+  return { isLoading: state.spinner.isLoading };
 };
-export default connect(mapStateToProps, {})(useSpinner);
+export default connect(mapStateToProps, {})(Spinner);

@@ -1,10 +1,10 @@
 export const setTrueLoading = () => {
   return {
-    type: 'FALSE_SPINNER',
+    type: 'TRUE_SPINNER',
   };
 };
 export const setFalseLoading = () => {
   return {
-    type: 'TRUE_SPINNER',
+    type: 'FALSE_SPINNER',
   };
 };

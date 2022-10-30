@@ -9,11 +9,14 @@ import { managerProduct } from '../../api/index';
 import { fetchProducts } from '../../actions/products.action';
 import { connect } from 'react-redux';
 import { Await } from 'react-router-dom';
+import { setTrueLoading, setFalseLoading } from '../../actions/spinner.action';
 
-const FormAddProduct = ({ fetchProducts }) => {
+const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
   const [form, setForm] = useState({ name: '', files: [] });
   const onSubmit = async () => {
+    setTrueLoading();
     await managerProduct.createProduct(form);
+    setFalseLoading();
     fetchProducts({});
   };
   return (
@@ -101,4 +104,8 @@ const FormAddProduct = ({ fetchProducts }) => {
   );
 };
 
-export default connect(null, { fetchProducts })(FormAddProduct);
+export default connect(null, {
+  fetchProducts,
+  setTrueLoading,
+  setFalseLoading,
+})(FormAddProduct);
