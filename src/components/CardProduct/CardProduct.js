@@ -6,7 +6,7 @@ var formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
 });
-const CardProduct = ({ name, price, images, _id }) => {
+const CardProduct = ({ name, price, illustration, _id }) => {
   const pathCurrent = window.location.pathname.slice(1);
   return (
     <>
@@ -14,7 +14,7 @@ const CardProduct = ({ name, price, images, _id }) => {
         <div className="text-center">
           <img
             className="card-product-img"
-            src={`http://localhost:5000/${images[0]}`}
+            src={`http://localhost:5000/${illustration}`}
             alt="cardemo"
           />
 

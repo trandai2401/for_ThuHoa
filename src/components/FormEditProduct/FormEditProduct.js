@@ -14,6 +14,7 @@ const infoProduct = {
   price: '',
   images: [],
   files: [],
+  illustration: '',
 };
 const FormEditProduct = () => {
   const [form, setForm] = useState(infoProduct);
@@ -78,7 +79,7 @@ const FormEditProduct = () => {
               />
             </label>
             <div className="upload-img-illustrating text-center">
-              <ImageUpdate classname="illustrating" url={form.images[0]} />
+              <ImageUpdate classname="illustrating" url={form.illustration} />
             </div>
             <label htmlFor="recipient-name" className="col-form-label">
               Ảnh slide
