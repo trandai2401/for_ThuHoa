@@ -1,6 +1,6 @@
 import { Icon } from '@iconify-icon/react';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { managerProduct } from '../../api';
 import DetailFormProduct from '../DetailFormProduct/DetailFormProduct';
 import ImageUpdate from '../ImageUpdate/ImageUpdate';
@@ -19,6 +19,7 @@ const infoProduct = {
 const FormEditProduct = () => {
   const [form, setForm] = useState(infoProduct);
   let params = useParams();
+
   useEffect(() => {
     managerProduct.fetchDetailProduct(params.id).then((res) => {
       setForm({ ...form, ...res });
@@ -52,8 +53,16 @@ const FormEditProduct = () => {
     data.append('manufacturer', form.manufacturer);
     data.append('price', form.price);
     data.append('description', form.description);
+    data.append('illustration', form.illustration);
+    console.log(form.images);
 
-    console.log(form);
+    form.images.forEach((element) => {
+      data.append('images[]', element);
+    });
+    form.files.forEach((element) => {
+      data.append('files', element);
+    });
+    managerProduct.updateProduct(params.id, data);
   };
   return (
     <>

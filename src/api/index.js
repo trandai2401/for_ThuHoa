@@ -90,10 +90,28 @@ export const managerProduct = {
     const response = await axiosInstance
       .delete(`/products/${id}`)
       .then((response) => {
-        // làm chi đó như tắt thông bấu
+        // làm chi đó như tắt thông bấ
+        return response;
       })
       .catch((e) => {
         console.log(e);
       });
+    return response;
+  },
+  updateProduct: async (id, data) => {
+    const response = await axiosInstance
+      .patch(`/products/${id}`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        // làm chi đó như tắt thông bấu
+        return response;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    return response;
   },
 };

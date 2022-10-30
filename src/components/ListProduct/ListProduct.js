@@ -25,9 +25,13 @@ const ListProduct = ({
   searchParams.forEach((value, key) => {
     query[key] = value;
   });
-  useEffect(() => {
-    fetchProducts({ ...query });
-  }, [...Object.values(query), products]);
+  useEffect(
+    () => {
+      fetchProducts({ ...query });
+    },
+    [...Object.values(query)],
+    count,
+  );
 
   const renderListProduct = () => {
     if (products.length === 0) {
