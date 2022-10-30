@@ -13,7 +13,7 @@ const App = () => {
               key={route.path}
               path={route.path}
               element={
-                <route.layout path={route.path} urlPage={route.pageUrl}>
+                <route.layout urlPage={route.pageUrl}>
                   <route.component />
                 </route.layout>
               }

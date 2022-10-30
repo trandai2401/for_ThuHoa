@@ -8,11 +8,12 @@ import { Icon } from '@iconify-icon/react';
 import { managerProduct } from '../../api/index';
 import { fetchProducts } from '../../actions/products.action';
 import { connect } from 'react-redux';
+import { Await } from 'react-router-dom';
 
 const FormAddProduct = ({ fetchProducts }) => {
   const [form, setForm] = useState({ name: '', files: [] });
-  const onSubmit = () => {
-    managerProduct.createProduct(form);
+  const onSubmit = async () => {
+    await managerProduct.createProduct(form);
     fetchProducts({});
   };
   return (
