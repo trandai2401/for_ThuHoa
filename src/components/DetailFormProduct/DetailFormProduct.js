@@ -10,6 +10,8 @@ const DetailFormProduct = ({
   manufacturers,
   form,
   setForm,
+  errors,
+  touched,
 }) => {
   const onChangeInput = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -32,6 +34,8 @@ const DetailFormProduct = ({
               }}
             />
           </label>
+          {errors.name && touched && <p className="error">{errors.name}</p>}
+
           <Input
             name="name"
             onChange={onChangeInput}
@@ -54,6 +58,9 @@ const DetailFormProduct = ({
               }}
             />
           </label>
+          {errors.category && touched && (
+            <p className="error">{errors.category}</p>
+          )}
           <div className="input-group mb-1">
             <SelectOption
               name="category"
@@ -77,7 +84,10 @@ const DetailFormProduct = ({
                 color: '#ef2243',
               }}
             />
-          </label>
+          </label>{' '}
+          {errors.manufacturer && touched && (
+            <p className="error">{errors.manufacturer}</p>
+          )}
           <div className="input-group mb-1">
             <SelectOption
               name="manufacturer"
@@ -101,7 +111,8 @@ const DetailFormProduct = ({
                 color: '#ef2243',
               }}
             />
-          </label>
+          </label>{' '}
+          {errors.price && touched && <p className="error">{errors.price}</p>}
           <Input
             name="price"
             onChange={onChangeInput}
@@ -114,7 +125,10 @@ const DetailFormProduct = ({
         <div className="form-group mb-1">
           <label htmlFor="message-text" className="col-form-label">
             Mô tả:
-          </label>
+          </label>{' '}
+          {errors.description && touched && (
+            <p className="error">{errors.description}</p>
+          )}
           <textarea
             name="description"
             onChange={onChangeInput}

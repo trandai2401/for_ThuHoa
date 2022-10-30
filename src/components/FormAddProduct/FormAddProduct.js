@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { button_classname } from '../../constants/string';
 import './FormAddProduct.css';
 import Button from '../Button';
@@ -10,15 +10,84 @@ import { fetchProducts } from '../../actions/products.action';
 import { connect } from 'react-redux';
 import { Await } from 'react-router-dom';
 import { setTrueLoading, setFalseLoading } from '../../actions/spinner.action';
+import Validator from '../../util/validator';
+const infoProduct = {
+  name: '',
+  category: null,
+  description: '',
+  manufacturer: null,
+  price: '',
+  files: [],
+  illustration: '',
+};
 
 const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
-  const [form, setForm] = useState({ name: '', files: [] });
+  const [form, setForm] = useState(infoProduct);
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState(false);
+
   const onSubmit = async () => {
-    setTrueLoading();
-    await managerProduct.createProduct(form);
-    setFalseLoading();
-    fetchProducts({});
+    setTouched(true);
+    if (Object.keys(errors).length === 0) {
+      setTrueLoading();
+      await managerProduct.createProduct(form);
+      setFalseLoading();
+      fetchProducts({});
+      setTouched(false);
+      setForm(infoProduct);
+    }
   };
+  useEffect(() => {
+    const e = validator.validate(form);
+    if (form.files.length == 0) {
+      e.files = 'The name field is required.';
+    }
+    console.log(e);
+    setErrors(e);
+  }, [form]);
+  const requiredWith = (value, field, state) =>
+    (!state[field] && !value) || !!value;
+  const rules = [
+    {
+      field: 'name',
+      method: 'isEmpty',
+      validWhen: false,
+      message: 'The name field is required.',
+    },
+    {
+      field: 'name',
+      method: 'isLength',
+      args: [{ min: 5 }],
+      validWhen: true,
+      message: 'The name must be at least 5 characters.',
+    },
+    {
+      field: 'category',
+      method: 'isEmpty',
+      validWhen: false,
+      message: 'The name field is required.',
+    },
+    {
+      field: 'manufacturer',
+      method: 'isEmpty',
+      validWhen: false,
+      message: 'The name field is required.',
+    },
+    {
+      field: 'price',
+      method: 'isEmpty',
+      validWhen: false,
+      message: 'The name field is required.',
+    },
+    {
+      field: 'description',
+      method: 'isEmpty',
+      validWhen: false,
+      message: 'The name field is required.',
+    },
+  ];
+  const validator = new Validator(rules);
+
   return (
     <>
       <Button
@@ -56,6 +125,8 @@ const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
             <div className="modal-body pt-1">
               <DetailFormProduct
                 form={form}
+                touched={touched}
+                errors={errors}
                 setForm={setForm}
                 titleForm="Thêm sản phẩm"
               />
@@ -66,6 +137,9 @@ const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
                   title_upload="Thêm hình ảnh sản phẩm"
                   classname="upload_tagHtml"
                 />
+                {errors.files && touched && (
+                  <p className="error">{errors.files}</p>
+                )}
                 <Icon
                   icon="charm:north-star"
                   style={{
@@ -92,7 +166,9 @@ const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
                 id="btn_them"
                 type="button"
                 className="btn"
-                data-dismiss="modal"
+                data-dismiss={`modal${
+                  Object.keys(errors).length === 0 ? '' : 'e'
+                }`}
               >
                 Thêm
               </button>
