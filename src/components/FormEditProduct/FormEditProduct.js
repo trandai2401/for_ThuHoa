@@ -2,15 +2,16 @@ import { Icon } from '@iconify-icon/react';
 import React, { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { managerProduct } from '../../api';
+import Validator from '../../util/validator';
 import DetailFormProduct from '../DetailFormProduct/DetailFormProduct';
 import ImageUpdate from '../ImageUpdate/ImageUpdate';
 import UploadControl from '../UploadControl/UploadControl';
 import './FormEditProduct.css';
 const infoProduct = {
   name: '',
-  category: null,
+  category: '',
   description: '',
-  manufacturer: null,
+  manufacturer: '',
   price: '',
   images: [],
   files: [],
@@ -19,10 +20,57 @@ const infoProduct = {
 const FormEditProduct = () => {
   const [form, setForm] = useState(infoProduct);
   let params = useParams();
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState(false);
+
+  useEffect(() => {
+    const e = validator.validate(form);
+    setErrors(e);
+  }, [form]);
+  const rules = [
+    {
+      field: 'name',
+      method: 'isEmpty',
+      validWhen: false,
+      message: 'The name field is required.',
+    },
+    {
+      field: 'name',
+      method: 'isLength',
+      args: [{ min: 5 }],
+      validWhen: true,
+      message: 'The name must be at least 5 characters.',
+    },
+    {
+      field: 'category',
+      method: 'isEmpty',
+      validWhen: false,
+      message: 'The name field is required.',
+    },
+    {
+      field: 'manufacturer',
+      method: 'isEmpty',
+      validWhen: false,
+      message: 'The name field is required.',
+    },
+    {
+      field: 'price',
+      method: 'isEmpty',
+      validWhen: false,
+      message: 'The name field is required.',
+    },
+    {
+      field: 'description',
+      method: 'isEmpty',
+      validWhen: false,
+      message: 'The name field is required.',
+    },
+  ];
+  const validator = new Validator(rules);
 
   useEffect(() => {
     managerProduct.fetchDetailProduct(params.id).then((res) => {
-      setForm({ ...form, ...res });
+      setForm({ ...form, ...res, price: res.price.toString() });
     });
   }, []);
   const icon_upload = (
@@ -47,22 +95,27 @@ const FormEditProduct = () => {
     setForm({ ...form, images: arrFile });
   };
   const onClickBtnSubmit = () => {
-    const data = new FormData();
-    data.append('name', form.name);
-    data.append('category', form.category);
-    data.append('manufacturer', form.manufacturer);
-    data.append('price', form.price);
-    data.append('description', form.description);
-    data.append('illustration', form.illustration);
-    console.log(form.images);
+    setTouched(true);
+    console.log(errors);
 
-    form.images.forEach((element) => {
-      data.append('images[]', element);
-    });
-    form.files.forEach((element) => {
-      data.append('files', element);
-    });
-    managerProduct.updateProduct(params.id, data);
+    if (Object.keys(errors).length === 0) {
+      const data = new FormData();
+      data.append('name', form.name);
+      data.append('category', form.category);
+      data.append('manufacturer', form.manufacturer);
+      data.append('price', form.price);
+      data.append('description', form.description);
+      data.append('illustration', form.illustration);
+      console.log(form.images);
+
+      form.images.forEach((element) => {
+        data.append('images[]', element);
+      });
+      form.files.forEach((element) => {
+        data.append('files', element);
+      });
+      managerProduct.updateProduct(params.id, data);
+    }
   };
   return (
     <>
@@ -71,7 +124,12 @@ const FormEditProduct = () => {
 
         <div className="d-flex justify-content-between">
           <div className="form-edit mx-1">
-            <DetailFormProduct form={form} setForm={setForm} />
+            <DetailFormProduct
+              form={form}
+              setForm={setForm}
+              errors={errors}
+              touched={touched}
+            />
             <button onClick={onClickBtnSubmit}> Hello Hòa</button>
           </div>
           <div className="images-manager mx-1">

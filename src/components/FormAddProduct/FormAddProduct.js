@@ -42,7 +42,6 @@ const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
     if (form.files.length == 0) {
       e.files = 'The name field is required.';
     }
-    console.log(e);
     setErrors(e);
   }, [form]);
   const requiredWith = (value, field, state) =>
