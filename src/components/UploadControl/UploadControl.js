@@ -4,7 +4,9 @@ import ListFileImage from '../ListFileImage/ListFileImage';
 
 const UploadControl = ({ title_upload, classname, form, setForm }) => {
   // const [files, setFiles] = useState([]);
+
   const files = form.files;
+
   const setFiles = (files) => {
     setForm({ ...form, files: files });
   };
@@ -14,6 +16,7 @@ const UploadControl = ({ title_upload, classname, form, setForm }) => {
   };
   const handleChange = (event) => {
     const fileUploaded = event.target.files;
+    console.log(form);
     setFiles([...files, ...fileUploaded]);
   };
   const delItemFile = (idItem) => {

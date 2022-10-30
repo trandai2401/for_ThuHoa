@@ -20,7 +20,7 @@ const FormEditProduct = () => {
   let params = useParams();
   useEffect(() => {
     managerProduct.fetchDetailProduct(params.id).then((res) => {
-      setForm(res);
+      setForm({ ...form, ...res });
     });
   }, []);
   const icon_upload = (
@@ -34,6 +34,12 @@ const FormEditProduct = () => {
       }}
     />
   );
+
+  const delItemFile = (idItem) => {
+    let arrFile = form.files;
+    arrFile = arrFile.filter((item, index) => index != idItem);
+    setForm({ ...form, files: arrFile });
+  };
 
   return (
     <>
@@ -78,7 +84,18 @@ const FormEditProduct = () => {
                     <ImageUpdate classname="img-slide my-3" url={e} />
                   ))
                 : null}
+              {form.files.map((e, index) => {
+                const objectUrl = URL.createObjectURL(e);
 
+                return (
+                  <ImageUpdate
+                    type="IMG_UPLOAD"
+                    classname="img-slide my-3"
+                    url={objectUrl}
+                    onClick={() => delItemFile(index)}
+                  />
+                );
+              })}
               <UploadControl
                 form={form}
                 setForm={setForm}
