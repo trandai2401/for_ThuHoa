@@ -11,24 +11,28 @@ const routes = [
     exact: true,
     component: ListViewProduct,
     layout: MasterLayout,
+    pageUrl: path.sanPham,
   },
 
   {
     path: path.quanLy,
     component: ManagerProduct,
     layout: MasterLayout,
+    pageUrl: path.quanLy,
   },
 
   {
     path: path.chiTietSanPham,
     component: DetailProduct,
     layout: MasterLayout,
+    pageUrl: path.sanPham,
   },
 
   {
     path: path.chinhSuaSanPham,
     component: EditProduct,
     layout: MasterLayout,
+    pageUrl: path.quanLy,
   },
 ];
 

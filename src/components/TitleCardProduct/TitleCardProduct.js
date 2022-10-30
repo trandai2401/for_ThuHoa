@@ -3,7 +3,9 @@ import { button_classname } from '../../constants/string';
 import Button from '../Button/Button';
 import { managerProduct } from '../../api/index';
 import { useNavigate } from 'react-router-dom';
-const TitleCardProduct = ({ id }) => {
+import { connect } from 'react-redux';
+import { fetchProducts } from '../../actions/products.action';
+const TitleCardProduct = ({ id, fetchProducts }) => {
   const navigate = useNavigate();
   return (
     <>
@@ -21,6 +23,7 @@ const TitleCardProduct = ({ id }) => {
         onClick={(e) => {
           e.preventDefault();
           managerProduct.removeProduct(id);
+          fetchProducts({});
         }}
         classname={button_classname.xoaSP}
       />
@@ -28,4 +31,4 @@ const TitleCardProduct = ({ id }) => {
   );
 };
 
-export default TitleCardProduct;
+export default connect(null, { fetchProducts })(TitleCardProduct);
