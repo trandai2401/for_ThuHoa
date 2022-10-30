@@ -6,11 +6,14 @@ import DetailFormProduct from '../DetailFormProduct/DetailFormProduct';
 import UploadControl from '../UploadControl/UploadControl';
 import { Icon } from '@iconify-icon/react';
 import { managerProduct } from '../../api/index';
-const FormAddProduct = () => {
+import { fetchProducts } from '../../actions/products.action';
+import { connect } from 'react-redux';
+
+const FormAddProduct = ({ fetchProducts }) => {
   const [form, setForm] = useState({ name: '', files: [] });
-  // console.log(form);
   const onSubmit = () => {
     managerProduct.createProduct(form);
+    fetchProducts({});
   };
   return (
     <>
@@ -97,4 +100,4 @@ const FormAddProduct = () => {
   );
 };
 
-export default FormAddProduct;
+export default connect(null, { fetchProducts })(FormAddProduct);

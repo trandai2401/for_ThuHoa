@@ -27,7 +27,7 @@ const ListProduct = ({
   });
   useEffect(() => {
     fetchProducts({ ...query });
-  }, [...Object.values(query)]);
+  }, [...Object.values(query), products]);
 
   const renderListProduct = () => {
     if (products.length === 0) {

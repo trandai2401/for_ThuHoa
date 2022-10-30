@@ -33,8 +33,6 @@ const SearchBar = ({ searchProduct }) => {
 
       query.searchProduct = term;
 
-      console.log(query.searchProduct, term);
-
       navigate(`/${pathCurrent}?` + toQuery(query));
       searchProduct(term);
     }, 500);
@@ -44,9 +42,7 @@ const SearchBar = ({ searchProduct }) => {
     };
   }, [term]);
 
-  const onEnterInput = () => {
-    console.log(term);
-  };
+  const onEnterInput = () => {};
   return (
     <>
       <form

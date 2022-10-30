@@ -40,7 +40,20 @@ const FormEditProduct = () => {
     arrFile = arrFile.filter((item, index) => index != idItem);
     setForm({ ...form, files: arrFile });
   };
+  const delItemImage = (idItem) => {
+    const arrFile = form.images.filter((item, index) => index != idItem);
+    setForm({ ...form, images: arrFile });
+  };
+  const onClickBtnSubmit = () => {
+    const data = new FormData();
+    data.append('name', form.name);
+    data.append('category', form.category);
+    data.append('manufacturer', form.manufacturer);
+    data.append('price', form.price);
+    data.append('description', form.description);
 
+    console.log(form);
+  };
   return (
     <>
       <div className="container-edit-product">
@@ -49,6 +62,7 @@ const FormEditProduct = () => {
         <div className="d-flex justify-content-between">
           <div className="form-edit mx-1">
             <DetailFormProduct form={form} setForm={setForm} />
+            <button onClick={onClickBtnSubmit}> Hello Hòa</button>
           </div>
           <div className="images-manager mx-1">
             <label htmlFor="recipient-name" className="col-form-label">
@@ -79,11 +93,13 @@ const FormEditProduct = () => {
               />
             </label>
             <div className="change-img-slide text-center">
-              {form.images.length > 1
-                ? form.images.map((e) => (
-                    <ImageUpdate classname="img-slide my-3" url={e} />
-                  ))
-                : null}
+              {form.images.map((e, index) => (
+                <ImageUpdate
+                  classname="img-slide my-3"
+                  url={e}
+                  onClick={() => delItemImage(index)}
+                />
+              ))}
               {form.files.map((e, index) => {
                 const objectUrl = URL.createObjectURL(e);
 

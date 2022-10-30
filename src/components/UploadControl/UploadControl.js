@@ -16,7 +16,6 @@ const UploadControl = ({ title_upload, classname, form, setForm }) => {
   };
   const handleChange = (event) => {
     const fileUploaded = event.target.files;
-    console.log(form);
     setFiles([...files, ...fileUploaded]);
   };
   const delItemFile = (idItem) => {
