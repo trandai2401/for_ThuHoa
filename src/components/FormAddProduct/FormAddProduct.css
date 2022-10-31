@@ -1,47 +1,64 @@
 #formDialogAddProduct {
-  margin: 20px 0px 0px 0px;
-  z-index: 999999;
-  font-size: 13px;
-  width: 100%;
+    margin: 20px 0px 0px 0px;
+    z-index: 999999;
+    font-size: 13px;
+    width: 100%;
+    margin: 20px 0px 0px 0px;
+    z-index: 999999;
+    font-size: 13px;
+    width: 100%;
 }
 
 #formDialogAddProductLabel {
-  margin: 0px;
+    margin: 0px;
+
+}
+
+.input-group>.custom-select {
+    font-size: 13px
 }
 
 .modal-header {
-  display: flex;
-  margin: 0px;
+    display: flex;
+    margin: 0px;
 }
 
 .modal-body {
-  margin: 0px 0px;
+    margin: 0px 0px;
 }
 
 #btn_huy,
 #btn_them {
-  width: 150px;
-  border-radius: 50px;
-  border: 0.5px solid #00ccff;
+    margin: 0px 5px;
+    width: 100px;
+    border-radius: 50px;
+    border: 0.5px solid #00ccff
 }
 
 #btn_huy {
-  color: #00ccff;
+    color: #00ccff;
+
 }
 
 #btn_them {
-  color: #ffffff;
-  background: #00ccff;
+    color: #ffffff;
+    background: #00ccff;
 }
 
 .upload_tagHtml {
-  border: none;
-  background: transparent;
-  color: #23be12;
+    border: none;
+    background: transparent;
+    color: #23be12;
+
 }
 
 .error {
-  display: inline;
-  color: red;
-  font-weight: bold;
+    display: inline;
+    color: red;
+    font-weight: bold;
+}
+
+textarea.form-control {
+    height: 125px;
+    font-size: 13px;
 }

@@ -1,10 +1,21 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import './Header.css';
 import logo from '../../asset/images/logo.svg';
 import { path as paths } from '../../constants/string';
 import { Link } from 'react-router-dom';
+import { Icon } from '@iconify-icon/react';
+import SideBar from '../SideBar';
 
-const Header = ({ path }) => {
+const Header = ({ path, setWidened, widened }) => {
+  const [isShow, setIsShow] = useState(false);
+  const onClickShowSideBar = () => {
+    setIsShow(true);
+    if (isShow === true) {
+      return <SideBar />;
+    }
+    setIsShow(false);
+    return null;
+  };
   return (
     <>
       <header className="header">
@@ -26,7 +37,23 @@ const Header = ({ path }) => {
             )}
           </Link>
         </div>
-        <div className="empty"></div>
+        <div className="empty">
+          <button
+            type="button"
+            className="btn-menu-hidden"
+            onClick={() => setWidened(!widened)}
+          >
+            <Icon
+              icon="heroicons-outline:menu"
+              style={{
+                position: 'relative',
+                top: '2px',
+                fontSize: '50px',
+                color: '#00ade8',
+              }}
+            />
+          </button>
+        </div>
       </header>
     </>
   );

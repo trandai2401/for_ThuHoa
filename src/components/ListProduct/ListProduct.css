@@ -1,9 +1,23 @@
 .container-list-product {
-    width: 90%;
+    width: auto;
     height: auto;
     background-color: #fff;
     border: 1px solid rgb(255, 255, 255);
     border-radius: 5px;
     padding: 30px;
-    margin: 120px auto;
+    margin: 120px 50px;
+}
+
+@media screen and (min-width : 600px) and (max-width : 768px) {
+    .container-list-product {
+        margin: 120px 20px;
+        padding: 10px;
+    }
+}
+
+@media screen and (min-width : 320px) and (max-width : 550px) {
+    .container-list-product {
+        margin: 120px 10px;
+        padding: 10px
+    }
 }

@@ -8,12 +8,15 @@
     margin: 50px auto;
 }
 
-.form-edit {
-    width: 40%;
+.content-edit-product {
+    display: flex;
+    justify-content: between;
 }
 
+.form-edit,
 .images-manager {
     width: 50%;
+    padding: 10px
 }
 
 .upload-img-illustrating {
@@ -50,8 +53,8 @@
 }
 
 .img-slide {
-    width: 200px;
-    height: 167px;
+    width: 150px;
+    height: 150px;
     object-fit: contain;
     background-color: #c8d0d0;
     border: 1px solid rgb(255, 255, 255);
@@ -68,16 +71,28 @@
 .change-img-slide {
     display: grid;
     grid-template-columns: auto auto;
-}
-
-.plus-upload-btn {
-
-    margin: 16px auto;
-    width: 200px;
-    height: 167px;
-    background-color: #c8d0d0;
-    border: 1px solid rgb(255, 255, 255);
+    background: #c8d0d0;
     border-radius: 5px;
 }
 
-.plus-upload-btn {}
+.plus-upload-btn {
+    width: 150px;
+    height: 150px;
+    background-color: #c8d0d0;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    margin: 16px auto;
+
+}
+
+@media screen and (min-width : 320px) and (max-width : 768px) {
+    .content-edit-product {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-edit,
+    .images-manager {
+        width: 100%;
+    }
+}

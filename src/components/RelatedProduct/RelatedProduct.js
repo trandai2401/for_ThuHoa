@@ -5,7 +5,7 @@ import './RelatedProduct.css';
 const RelatedProduct = ({ name, price, id, image }) => {
   return (
     <>
-      <Link to={`/san-pham/${id}`} className="card-related-product mx-2">
+      <Link to={`/san-pham/${id}`} className="card-related-product link mx-2">
         <div className="text-center">
           <img src={`http://localhost:5000/${image}`} />
           <div className="product-title text-left ml-3 my-2">

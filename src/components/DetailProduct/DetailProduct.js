@@ -28,6 +28,7 @@ const DetailProduct = ({ category, manufacturer }) => {
     managerProduct.fetchRelateProduct(params.id).then((res) => {
       setRelatedProduct(res.data.data);
     });
+    window.scrollTo(0, 0);
   }, [params.id]);
 
   const renderRelatedProducts = relatedProduct.map((item, index) => {
@@ -80,9 +81,7 @@ const DetailProduct = ({ category, manufacturer }) => {
         <br />
         <b>Gợi ý cho bạn: </b>
 
-        <div className="row-related-product mt-3 d-flex justify-content-start">
-          {renderRelatedProducts}
-        </div>
+        <div className="row-related-product">{renderRelatedProducts}</div>
       </div>
     </>
   );

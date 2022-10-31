@@ -58,6 +58,7 @@ export const managerProduct = {
       });
     return res;
   },
+
   createProduct: async (value) => {
     const { name, category, manufacturer, price, description, files } = value;
     const data = new FormData();
@@ -74,18 +75,14 @@ export const managerProduct = {
     console.log(name, category, manufacturer, price, description, files);
     const rs = await axiosInstance
       .post('/products', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+        headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((rs) => {
-        // làm chi đó
         return rs;
       })
-      .catch((e) => {
-        console.log(e);
-      });
+      .catch((e) => console.log(e));
   },
+
   removeProduct: async (id) => {
     const response = await axiosInstance
       .delete(`/products/${id}`)
@@ -98,7 +95,22 @@ export const managerProduct = {
       });
     return response;
   },
-  updateProduct: async (id, data) => {
+  updateProduct: async (id, form) => {
+    const data = new FormData();
+    data.append('name', form.name);
+    data.append('category', form.category);
+    data.append('manufacturer', form.manufacturer);
+    data.append('price', form.price);
+    data.append('description', form.description);
+    data.append('illustration', form.illustration);
+    console.log(form.images);
+
+    form.images.forEach((element) => {
+      data.append('images[]', element);
+    });
+    form.files.forEach((element) => {
+      data.append('files', element);
+    });
     const response = await axiosInstance
       .patch(`/products/${id}`, data, {
         headers: {
@@ -106,7 +118,6 @@ export const managerProduct = {
         },
       })
       .then((response) => {
-        // làm chi đó như tắt thông bấu
         return response;
       })
       .catch((e) => {

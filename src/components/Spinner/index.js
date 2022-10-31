@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './spinner.css';
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
+
 function Spinner({ isLoading }) {
   return isLoading ? (
     <>

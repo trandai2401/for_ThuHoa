@@ -50,6 +50,7 @@ const SearchBar = ({ searchProduct }) => {
           e.preventDefault();
           onEnterInput();
         }}
+        className="form-input-search"
       >
         <div className="left-icon-input-search">
           <Icon

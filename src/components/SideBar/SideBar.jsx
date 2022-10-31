@@ -15,6 +15,7 @@ const Navbar = ({
   categorySlected,
   changeManufacturerSelected,
   manufacturerSelected,
+  widened,
 }) => {
   useEffect(() => {
     fetchNavbar();
@@ -22,7 +23,7 @@ const Navbar = ({
 
   return (
     <>
-      <div className="navbar">
+      <div className={`navbar ${widened && 'navbar-widen'}`}>
         <Dropdown
           title="Danh mục"
           items={datalist.category.items}

@@ -5,7 +5,9 @@ import './ListProduct.css';
 import { fetchProducts } from '../../actions/products.action';
 import Pagination from '../Pagination/Pagination';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import OutOfProduct from '../OutOfProduct/OutOfProduct';
 import { setTrueLoading, setFalseLoading } from '../../actions/spinner.action';
+
 const ListProduct = ({
   products,
   fetchProducts,
@@ -31,7 +33,6 @@ const ListProduct = ({
         setFalseLoading();
       }
       func();
-      // await fetchProducts({ ...query });
     },
     [...Object.values(query)],
     count,
@@ -39,7 +40,7 @@ const ListProduct = ({
 
   const renderListProduct = () => {
     if (products.length === 0) {
-      return 'Khoong conf sanr phaamr';
+      return <OutOfProduct />;
     }
     return products.map((item, index) => <CardProduct {...item} key={index} />);
   };

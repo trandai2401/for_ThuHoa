@@ -5,7 +5,6 @@ import { useSearchParams } from 'react-router-dom';
 import { queryToObject, toQuery } from '../../util';
 import { useContext } from 'react';
 import { UrlPage } from '../../context/UrlPage';
-// UrlPage
 const ItemDropdown = ({
   title,
   onClick,
@@ -18,7 +17,6 @@ const ItemDropdown = ({
   const navigate = useNavigate();
   const query = queryToObject(searchParams);
   const urlPage = useContext(UrlPage);
-
   return (
     <>
       <p

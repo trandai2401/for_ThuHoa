@@ -3,7 +3,7 @@ import Button from '../Button';
 import { numbers, button_classname } from '../../constants/string';
 import { connect } from 'react-redux';
 import { changePageSelected } from '../../actions/products.action';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { queryToObject, toQuery } from '../../util';
 
 const Pagination = ({ count, changePageSelected, pageSelected }) => {
@@ -40,6 +40,7 @@ const Pagination = ({ count, changePageSelected, pageSelected }) => {
     const query = queryToObject(searchParams);
     query.pageSelected = title;
     navigate(`/${pathCurrent}?` + toQuery(query));
+    window.scrollTo(0, 0);
   };
   return (
     <>

@@ -25,10 +25,11 @@ const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
   const [form, setForm] = useState(infoProduct);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState(false);
-
   const onSubmit = async () => {
     setTouched(true);
-    if (Object.keys(errors).length === 0) {
+    console.log(Object.keys(errors).length == 0);
+    if (Object.keys(errors).length == 0) {
+      console.log(123);
       setTrueLoading();
       await managerProduct.createProduct(form);
       setFalseLoading();
@@ -37,11 +38,13 @@ const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
       setForm(infoProduct);
     }
   };
+
   useEffect(() => {
     const e = validator.validate(form);
     if (form.files.length == 0) {
       e.files = 'The name field is required.';
     }
+    console.log(e);
     setErrors(e);
   }, [form]);
   const requiredWith = (value, field, state) =>
@@ -86,7 +89,6 @@ const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
     },
   ];
   const validator = new Validator(rules);
-
   return (
     <>
       <Button
@@ -130,15 +132,6 @@ const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
                 titleForm="Thêm sản phẩm"
               />
               <div className="form-group mb-1">
-                <UploadControl
-                  form={form}
-                  setForm={setForm}
-                  title_upload="Thêm hình ảnh sản phẩm"
-                  classname="upload_tagHtml"
-                />
-                {errors.files && touched && (
-                  <p className="error">{errors.files}</p>
-                )}
                 <Icon
                   icon="charm:north-star"
                   style={{
@@ -148,6 +141,16 @@ const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
                     color: '#ef2243',
                   }}
                 />
+                <UploadControl
+                  form={form}
+                  setForm={setForm}
+                  title_upload="Thêm hình ảnh sản phẩm"
+                  classname="upload_tagHtml"
+                />
+
+                {errors.files && touched && (
+                  <p className="error">{errors.files}</p>
+                )}
               </div>
             </div>
             {/* button */}

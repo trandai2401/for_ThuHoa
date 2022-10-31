@@ -22,3 +22,13 @@
 .input-search:focus {
     outline: none;
 }
+
+@media screen and (min-width : 320px) and (max-width : 600px) {
+
+
+    .left-icon-input-search {
+        width: 70%;
+        top: 43px;
+        right: 10px;
+    }
+}

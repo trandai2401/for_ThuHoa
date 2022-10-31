@@ -50,8 +50,16 @@
     width: calc(100% - 10% - 40%)
 }
 
-/* ADD responsive */
+.btn-menu-hidden {
+    border: none;
+    height: 64px;
+}
 
+.btn-menu-hidden {
+    display: none;
+}
+
+/* ADD responsive */
 @media screen and (min-width : 768px) and (max-width : 1024px) {
 
     /* Styles */
@@ -97,6 +105,11 @@
         display: flex;
         height: auto;
         font-size: 12px;
+    }
+}
 
+@media screen and (min-width : 320px) and (max-width : 600px) {
+    .btn-menu-hidden {
+        display: block !important;
     }
 }

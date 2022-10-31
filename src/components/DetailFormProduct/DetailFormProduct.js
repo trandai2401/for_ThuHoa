@@ -16,7 +16,6 @@ const DetailFormProduct = ({
   const onChangeInput = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
   return (
     <>
       <form className="form-horizontal">
@@ -35,7 +34,6 @@ const DetailFormProduct = ({
             />
           </label>
           {errors.name && touched && <p className="error">{errors.name}</p>}
-
           <Input
             name="name"
             onChange={onChangeInput}
@@ -137,8 +135,6 @@ const DetailFormProduct = ({
             id="message-text"
           ></textarea>
         </div>
-
-        {/* tên sản phẩm */}
       </form>
     </>
   );
