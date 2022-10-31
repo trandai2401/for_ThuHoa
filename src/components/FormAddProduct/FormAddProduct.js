@@ -10,6 +10,8 @@ import { fetchProducts } from '../../actions/products.action';
 import { connect } from 'react-redux';
 import { Await } from 'react-router-dom';
 import { setTrueLoading, setFalseLoading } from '../../actions/spinner.action';
+import { showSuccessNotification } from '../../actions/notification.action';
+
 import Validator from '../../util/validator';
 const infoProduct = {
   name: '',
@@ -21,12 +23,18 @@ const infoProduct = {
   illustration: '',
 };
 
-const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
+const FormAddProduct = ({
+  fetchProducts,
+  setTrueLoading,
+  setFalseLoading,
+  showSuccessNotification,
+}) => {
   const [form, setForm] = useState(infoProduct);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState(false);
   const onSubmit = async () => {
     setTouched(true);
+
     console.log(Object.keys(errors).length == 0);
     if (Object.keys(errors).length == 0) {
       console.log(123);
@@ -34,7 +42,12 @@ const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
       await managerProduct.createProduct(form);
       setFalseLoading();
       fetchProducts({});
-      setTouched(false);
+      await setTouched(false);
+      showSuccessNotification(
+        'Thông báo',
+        `Đã thêm sản phẩm ${form.name} thành công.`,
+      );
+
       setForm(infoProduct);
     }
   };
@@ -160,6 +173,9 @@ const FormAddProduct = ({ fetchProducts, setTrueLoading, setFalseLoading }) => {
                 type="button"
                 className="btn bg-transparent"
                 data-dismiss="modal"
+                onClick={() => {
+                  setForm(infoProduct);
+                }}
               >
                 Hủy
               </button>
@@ -186,4 +202,5 @@ export default connect(null, {
   fetchProducts,
   setTrueLoading,
   setFalseLoading,
+  showSuccessNotification,
 })(FormAddProduct);

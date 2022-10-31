@@ -1,6 +1,6 @@
 import { Icon } from '@iconify-icon/react';
 import React, { useEffect, useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { managerProduct } from '../../api';
 import { rulesFormEdit } from '../../constants/rulesValidate';
 import DetailFormProduct from '../DetailFormProduct/DetailFormProduct';
@@ -8,6 +8,9 @@ import ImageUpdate from '../ImageUpdate/ImageUpdate';
 import UploadControl from '../UploadControl/UploadControl';
 import './FormEditProduct.css';
 import Validator from '../../util/validator';
+import { path } from '../../constants/string';
+import { showSuccessNotification } from '../../actions/notification.action';
+import { useDispatch } from 'react-redux';
 
 const infoProduct = {
   name: '',
@@ -25,9 +28,9 @@ const FormEditProduct = () => {
   let params = useParams();
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState(false);
-
+  const navigate = useNavigate();
   const validator = new Validator(rulesFormEdit);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     const e = validator.validate(form);
     setErrors(e);
@@ -67,6 +70,13 @@ const FormEditProduct = () => {
 
     if (Object.keys(errors).length === 0) {
       managerProduct.updateProduct(params.id, form);
+      dispatch(
+        showSuccessNotification(
+          'Thông báo',
+          `Đã cập nhật sản phẩm ${form.name} thành công`,
+        ),
+      );
+      navigate(`/${path.sanPham}/${params.id}`);
     }
   };
 
@@ -146,6 +156,9 @@ const FormEditProduct = () => {
         {/* buttons */}
         <div className="w-100 text-center my-3">
           <button
+            onClick={() => {
+              navigate(-1);
+            }}
             id="btn_huy"
             type="button"
             className="btn bg-transparent"

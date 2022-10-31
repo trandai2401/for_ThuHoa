@@ -1,0 +1,42 @@
+.wrapper-notification {
+  position: fixed;
+  right: 15px;
+  /* background-color: rgb(160, 160, 160); */
+  flex-direction: column;
+  display: flex;
+}
+.card-notification {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  min-height: 70px;
+  width: 330px;
+  padding: 10px;
+  margin-top: 5px;
+  color: white;
+  border-radius: 5px;
+}
+.card-notification img {
+  margin-top: 6px;
+}
+.card-notification span {
+  font-weight: 700;
+}
+.card-notification p:hover {
+  font-weight: normal;
+}
+.content {
+  display: inline-block;
+}
+
+.wrapper-notification .success {
+  background-color: #73e5c8;
+}
+
+.wrapper-notification .danger {
+  background-color: #e57373;
+}
+
+.wrapper-notification .info {
+  background-color: #73cae5;
+}

@@ -15,7 +15,7 @@ const SelectOption = ({ title, data, onChange, name, value }) => {
         className="custom-select"
         id="inputGroupSelect01"
       >
-        <option selected value={'null'}>
+        <option selected={value == null} value={'null'}>
           {title}
         </option>
         {data.items.map((item) => (

@@ -5,7 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import { managerProduct } from '../../api/index';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../../actions/products.action';
-const TitleCardProduct = ({ id, fetchProducts }) => {
+import { showSuccessNotification } from '../../actions/notification.action';
+
+const TitleCardProduct = ({
+  id,
+  fetchProducts,
+  showSuccessNotification,
+  name,
+}) => {
   const navigate = useNavigate();
   return (
     <>
@@ -13,7 +20,6 @@ const TitleCardProduct = ({ id, fetchProducts }) => {
         title="Cập nhật"
         onClick={(e) => {
           e.preventDefault();
-
           navigate(`/chinh-sua/${id}`);
         }}
         classname={button_classname.capNhat}
@@ -24,6 +30,10 @@ const TitleCardProduct = ({ id, fetchProducts }) => {
         onClick={(e) => {
           e.preventDefault();
           managerProduct.removeProduct(id);
+          showSuccessNotification(
+            'Thông báo',
+            `Đã xóa sản phẩm ${name} thành công.`,
+          );
           fetchProducts({});
         }}
         classname={button_classname.xoaSP}
@@ -32,4 +42,6 @@ const TitleCardProduct = ({ id, fetchProducts }) => {
   );
 };
 
-export default connect(null, { fetchProducts })(TitleCardProduct);
+export default connect(null, { fetchProducts, showSuccessNotification })(
+  TitleCardProduct,
+);

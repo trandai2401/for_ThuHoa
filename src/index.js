@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import Spinner from './components/Spinner/index';
-
+import Notification from './components/Notification/Notification';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 ReactDOM.render(
@@ -16,6 +16,7 @@ ReactDOM.render(
     <Provider store={store}>
       <App />
       <Spinner />
+      <Notification />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),

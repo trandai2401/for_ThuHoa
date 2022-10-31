@@ -1,16 +1,20 @@
 import React from 'react';
-
-const Notification = () => {
+import { useState } from 'react';
+import { connect } from 'react-redux';
+import CardNotification from './CardNotification';
+import './notification.css';
+const Notification = ({ notifications }) => {
   return (
     <>
-      <div style="right: 20px; position: fixed">
-        <div>
-          <h6>Thoong baso</h6>
-          <p>Ban da them thanh cong</p>
-        </div>
+      <div className="wrapper-notification">
+        {Object.values(notifications).map((noti) => (
+          <CardNotification {...noti} />
+        ))}
       </div>
     </>
   );
 };
-
-export default Notification;
+const mapStateToprops = (state) => {
+  return { notifications: state.notifications };
+};
+export default connect(mapStateToprops, {})(Notification);

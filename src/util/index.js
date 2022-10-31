@@ -13,6 +13,7 @@ export const queryToObject = (searchParams) => {
   });
   return query;
 };
-class SearchQuery {
-  constructor() {}
-}
+
+export const getRndInteger = () => {
+  return Math.floor(Math.random() * (10000 - 0)) + 0;
+};
