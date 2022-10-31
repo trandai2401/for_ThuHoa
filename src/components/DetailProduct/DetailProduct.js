@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './DetailProduct.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../Button';
 import { button_classname } from '../../constants/string';
 import { Icon } from '@iconify-icon/react';
@@ -21,6 +21,7 @@ const DetailProduct = ({ category, manufacturer }) => {
   const [product, setProduct] = useState(infoProduct);
   const [relatedProduct, setRelatedProduct] = useState([]);
   let params = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
     managerProduct.fetchDetailProduct(params.id).then((res) => {
       setProduct(res);
@@ -55,7 +56,11 @@ const DetailProduct = ({ category, manufacturer }) => {
             color: '#00ADE8',
           }}
         />
-        <Button title="Quay lại" classname={button_classname.back} />
+        <Button
+          title="Quay lại"
+          onClick={() => navigate(-1)}
+          classname={button_classname.back}
+        />
 
         <div className="content-product">
           <div className="content-product-left">

@@ -31,3 +31,10 @@ class Validator {
 }
 
 export default Validator;
+export const pattern = /[!@#$%^&*(),.?":{}|<>]/g;
+export const isStrangeChar = (value) => {
+  return value.match(pattern) != null;
+};
+export const isPositive = (value) => {
+  return +value > 0;
+};

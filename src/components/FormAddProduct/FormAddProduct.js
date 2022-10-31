@@ -12,7 +12,7 @@ import { Await } from 'react-router-dom';
 import { setTrueLoading, setFalseLoading } from '../../actions/spinner.action';
 import { showSuccessNotification } from '../../actions/notification.action';
 
-import Validator from '../../util/validator';
+import Validator, { isStrangeChar } from '../../util/validator';
 const infoProduct = {
   name: '',
   category: null,
@@ -60,8 +60,10 @@ const FormAddProduct = ({
     console.log(e);
     setErrors(e);
   }, [form]);
-  const requiredWith = (value, field, state) =>
-    (!state[field] && !value) || !!value;
+
+  const isPositive = (value) => {
+    return +value > 0;
+  };
   const rules = [
     {
       field: 'name',
@@ -77,22 +79,34 @@ const FormAddProduct = ({
       message: 'The name must be at least 5 characters.',
     },
     {
+      field: 'name',
+      method: isStrangeChar,
+      validWhen: false,
+      message: 'The name must not include strange characters.',
+    },
+    {
       field: 'category',
       method: 'isEmpty',
       validWhen: false,
-      message: 'The name field is required.',
+      message: 'The category field is required.',
     },
     {
       field: 'manufacturer',
       method: 'isEmpty',
       validWhen: false,
-      message: 'The name field is required.',
+      message: 'The manufacturer field is required.',
     },
     {
       field: 'price',
       method: 'isEmpty',
       validWhen: false,
-      message: 'The name field is required.',
+      message: 'The price field is required.',
+    },
+    {
+      field: 'price',
+      method: isPositive,
+      validWhen: true,
+      message: 'The price field is position',
     },
     {
       field: 'description',
@@ -175,6 +189,7 @@ const FormAddProduct = ({
                 data-dismiss="modal"
                 onClick={() => {
                   setForm(infoProduct);
+                  setTouched(false);
                 }}
               >
                 Hủy

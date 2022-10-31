@@ -1,9 +1,16 @@
+import { isPositive, isStrangeChar } from '../util/validator';
 export const rulesFormEdit = [
   {
     field: 'name',
     method: 'isEmpty',
     validWhen: false,
     message: 'The name field is required.',
+  },
+  {
+    field: 'name',
+    method: isStrangeChar,
+    validWhen: false,
+    message: 'The name must not include strange characters.',
   },
   {
     field: 'name',
@@ -29,6 +36,12 @@ export const rulesFormEdit = [
     method: 'isEmpty',
     validWhen: false,
     message: 'The name field is required.',
+  },
+  {
+    field: 'price',
+    method: isPositive,
+    validWhen: true,
+    message: 'The price field is position',
   },
   {
     field: 'description',

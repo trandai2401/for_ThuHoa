@@ -22,6 +22,7 @@ const ItemDropdown = ({
       <p
         onClick={() => {
           query[code_dropdown] = code;
+          query.pageSelected = 1;
           onClick(code_dropdown);
           navigate(`/${urlPage}?` + toQuery(query));
         }}

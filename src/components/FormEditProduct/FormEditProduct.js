@@ -32,6 +32,7 @@ const FormEditProduct = () => {
   const validator = new Validator(rulesFormEdit);
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log(form);
     const e = validator.validate(form);
     setErrors(e);
   }, [form]);
@@ -41,7 +42,6 @@ const FormEditProduct = () => {
       setForm({ ...form, ...res, price: res.price.toString() });
     });
   }, []);
-
   const icon_upload = (
     <Icon
       icon="fa:plus"

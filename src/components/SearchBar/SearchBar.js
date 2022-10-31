@@ -12,7 +12,6 @@ var pattern = /[!@#$%^&*(),.?":{}|<>]/g;
 const SearchBar = ({ searchProduct }) => {
   const pathCurrent = window.location.pathname.slice(1);
   const [term, setTerm] = useState('');
-  const [debouncedTerm, setDebouncedTerm] = useState(term);
   let [searchParams] = useSearchParams();
   const navigate = useNavigate();
   useEffect(() => {
@@ -32,7 +31,7 @@ const SearchBar = ({ searchProduct }) => {
       });
 
       query.searchProduct = term;
-
+      query.pageSelected = 1;
       navigate(`/${pathCurrent}?` + toQuery(query));
       searchProduct(term);
     }, 500);
@@ -64,11 +63,11 @@ const SearchBar = ({ searchProduct }) => {
             placeholder="Search..."
             value={term}
             onChange={(e) => {
-              setTerm(e.target.value);
               var qry = e.target.value;
               if (qry.match(pattern)) {
-                alert('invalid');
+                // alert('invalid');
               } else {
+                setTerm(e.target.value);
               }
             }}
           />
