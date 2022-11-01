@@ -1,33 +1,15 @@
-import { Icon } from '@iconify-icon/react';
 import React, { useState } from 'react';
-import ListFileImage from '../ListFileImage/ListFileImage';
 
-const UploadControl = ({ title_upload, classname, form, setForm }) => {
-  // const [files, setFiles] = useState([]);
-  const files = form.files;
-  const setFiles = (files) => {
-    setForm({ ...form, files: files });
-  };
+const UploadControl = ({ title_upload, classname, addFile }) => {
   const hiddenFileInput = React.useRef(null);
   const handleClick = (event) => {
     hiddenFileInput.current.click();
   };
   const handleChange = (event) => {
     const fileUploaded = event.target.files;
-    setFiles([...files, ...fileUploaded]);
-  };
-  const delItemFile = (idItem) => {
-    let arrFile = files;
-    arrFile = arrFile.filter((item, index) => index != idItem);
-    setFiles(arrFile);
+    addFile([...fileUploaded]);
   };
 
-  const renderComponentListFile = () =>
-    classname == 'plus-upload-btn' ? (
-      ''
-    ) : (
-      <ListFileImage files={files} delItemFile={delItemFile} />
-    );
   return (
     <>
       <button type="button" className={classname} onClick={handleClick}>
@@ -41,7 +23,6 @@ const UploadControl = ({ title_upload, classname, form, setForm }) => {
         multiple
         required
       />
-      {renderComponentListFile()}
     </>
   );
 };

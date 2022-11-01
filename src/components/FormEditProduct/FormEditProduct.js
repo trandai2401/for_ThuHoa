@@ -14,13 +14,14 @@ import { useDispatch } from 'react-redux';
 
 const infoProduct = {
   name: '',
-  category: '',
+  category: null,
   description: '',
-  manufacturer: '',
+  manufacturer: null,
   price: '',
   images: [],
   files: [],
   illustration: '',
+  illustrationFiles: null,
 };
 
 const FormEditProduct = () => {
@@ -36,7 +37,7 @@ const FormEditProduct = () => {
     const e = validator.validate(form);
     setErrors(e);
   }, [form]);
-
+  console.log(form);
   useEffect(() => {
     managerProduct.fetchDetailProduct(params.id).then((res) => {
       setForm({ ...form, ...res, price: res.price.toString() });
@@ -110,7 +111,29 @@ const FormEditProduct = () => {
               />
             </label>
             <div className="upload-img-illustrating text-center">
-              <ImageUpdate classname="illustrating" url={form.illustration} />
+              {form.illustration !== null ? (
+                <ImageUpdate
+                  classname="illustrating"
+                  url={
+                    form.illustrationFiles === null
+                      ? `http://localhost:5000/${form.illustration}`
+                      : form.illustration
+                  }
+                  onClick={() => setForm({ ...form, illustration: null })}
+                />
+              ) : (
+                <UploadControl
+                  addFile={(file) => {
+                    setForm({
+                      ...form,
+                      illustrationFiles: file[0],
+                      illustration: URL.createObjectURL(file[0]),
+                    });
+                  }}
+                  title_upload={icon_upload}
+                  classname="plus-upload-btn"
+                />
+              )}
             </div>
             <label htmlFor="recipient-name" className="col-form-label">
               Ảnh slide
@@ -128,7 +151,7 @@ const FormEditProduct = () => {
               {form.images.map((e, index) => (
                 <ImageUpdate
                   classname="img-slide my-3"
-                  url={e}
+                  url={`http://localhost:5000/${e}`}
                   onClick={() => delItemImage(index)}
                 />
               ))}
@@ -136,7 +159,6 @@ const FormEditProduct = () => {
                 const objectUrl = URL.createObjectURL(e);
                 return (
                   <ImageUpdate
-                    type="IMG_UPLOAD"
                     classname="img-slide my-3"
                     url={objectUrl}
                     onClick={() => delItemFile(index)}
@@ -144,8 +166,9 @@ const FormEditProduct = () => {
                 );
               })}
               <UploadControl
-                form={form}
-                setForm={setForm}
+                addFile={(file) => {
+                  setForm({ ...form, files: [...form.files, ...file] });
+                }}
                 title_upload={icon_upload}
                 classname="plus-upload-btn"
               />

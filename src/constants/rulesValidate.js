@@ -23,19 +23,19 @@ export const rulesFormEdit = [
     field: 'category',
     method: 'isEmpty',
     validWhen: false,
-    message: 'The name field is required.',
+    message: 'The category field is required.',
   },
   {
     field: 'manufacturer',
     method: 'isEmpty',
     validWhen: false,
-    message: 'The name field is required.',
+    message: 'The manufacturer field is required.',
   },
   {
     field: 'price',
     method: 'isEmpty',
     validWhen: false,
-    message: 'The name field is required.',
+    message: 'The price field is required.',
   },
   {
     field: 'price',
@@ -47,6 +47,6 @@ export const rulesFormEdit = [
     field: 'description',
     method: 'isEmpty',
     validWhen: false,
-    message: 'The name field is required.',
+    message: 'The description field is required.',
   },
 ];

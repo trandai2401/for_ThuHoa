@@ -10,10 +10,7 @@ const ImageUpdate = ({ classname, url, type = 'IMG', onClick }) => {
         onMouseOver={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <img
-          src={type === 'IMG_UPLOAD' ? url : `http://localhost:5000/${url}`}
-          className={classname}
-        />
+        <img src={url} className={classname} />
         {isHovered && (
           <div className={`tow-btn-${classname}`}>
             <Button title="Cập nhật" classname={button_classname.editImg} />
