@@ -1,0 +1,79 @@
+@import url('http://fonts.cdnfonts.com/css/inter');
+.wrapper-popup {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+  background-color: rgba(0, 0, 0, 0.171);
+  z-index: 1000000;
+}
+
+.wrapper-popup .content {
+  margin-top: 20px;
+}
+
+.confirm-popup {
+  width: 610px;
+  height: 376px;
+
+  display: flex;
+  background: #ffffff;
+
+  box-shadow: 0px 4px 8px rgba(136, 152, 170, 0.2);
+  border-radius: 16px;
+
+  flex-direction: column;
+  align-items: center;
+}
+
+.confirm-popup img {
+  margin-top: 58px;
+}
+
+.confirm-popup span {
+  position: absolute;
+  width: 399px;
+  height: 48px;
+  top: 200px;
+  /* Regular/H6 16 */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  /* or 24px */
+
+  text-align: center;
+  letter-spacing: 0.35px;
+
+  /* Neutral/Mid Grey */
+
+  color: #62677a;
+}
+
+.confirm-btn {
+  position: absolute;
+  top: 296px;
+  display: flex;
+}
+
+.confirm-btn button {
+  width: 164px;
+  height: 44px;
+  background: #ff4d4d;
+  border-radius: 40px;
+  margin-left: 18px;
+  margin-right: 18px;
+  border: none;
+  color: white;
+  font-size: 14px;
+  box-shadow: 0px 4px 8px rgba(136, 152, 170, 0.2);
+}
+
+.confirm-btn .cancel {
+  color: #62677a;
+  background: #ffffff;
+  border: 1px solid #62677a;
+}

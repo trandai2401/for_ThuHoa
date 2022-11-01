@@ -4,18 +4,26 @@ import { Icon } from '@iconify-icon/react';
 import SelectOption from '../SelectOption/SelectOption';
 import UploadControl from '../UploadControl/UploadControl';
 import { connect } from 'react-redux';
-const DetailFormProduct = ({
-  onSubmit,
-  categorys,
-  manufacturers,
-  form,
-  setForm,
-  errors,
-  touched,
-}) => {
+import { useEffect } from 'react';
+
+const initValue = [];
+const DetailFormProduct = ({ categorys, form, setForm, errors, touched }) => {
+  const [manufacturers, setManufacturers] = useState(initValue);
   const onChangeInput = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+  useEffect(() => {
+    console.log(form.category === null);
+    console.log(manufacturers);
+    if (form.category === null) {
+      setForm({ ...form, manufacturer: null });
+      setManufacturers(initValue);
+    } else
+      setManufacturers(
+        categorys.items.find((category) => category.code === form.category)
+          .manu_items,
+      );
+  }, [form.category]);
   return (
     <>
       <form className="form-horizontal">
@@ -65,7 +73,7 @@ const DetailFormProduct = ({
               onChange={onChangeInput}
               value={form.category}
               title="Chọn danh mục sản phẩm"
-              data={categorys}
+              data={categorys.items}
             />
           </div>
         </div>

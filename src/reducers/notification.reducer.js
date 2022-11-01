@@ -4,7 +4,6 @@ const notification = (state = {}, action) => {
       return { [action.payload.id]: action.payload.data, ...state };
     case 'REMOVE_NOTIFICATION':
       delete state[action.payload];
-      console.log(state);
       return { ...state };
     default:
       return state;

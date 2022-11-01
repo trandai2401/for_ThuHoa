@@ -18,7 +18,7 @@ const SelectOption = ({ title, data, onChange, name, value }) => {
         <option selected={value == null} value={'null'}>
           {title}
         </option>
-        {data.items.map((item) => (
+        {data.map((item) => (
           <option value={item.code}>{item.name}</option>
         ))}
       </select>

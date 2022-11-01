@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { Await } from 'react-router-dom';
 import { setTrueLoading, setFalseLoading } from '../../actions/spinner.action';
 import { showSuccessNotification } from '../../actions/notification.action';
+import ListFileImage from '../ListFileImage/ListFileImage';
 
 import Validator, { isStrangeChar } from '../../util/validator';
 const infoProduct = {
@@ -35,9 +36,7 @@ const FormAddProduct = ({
   const onSubmit = async () => {
     setTouched(true);
 
-    console.log(Object.keys(errors).length == 0);
     if (Object.keys(errors).length == 0) {
-      console.log(123);
       setTrueLoading();
       await managerProduct.createProduct(form);
       setFalseLoading();
@@ -51,13 +50,14 @@ const FormAddProduct = ({
       setForm(infoProduct);
     }
   };
-
+  const fileValidate = (value) => {
+    return value.length <= 5;
+  };
   useEffect(() => {
     const e = validator.validate(form);
-    if (form.files.length == 0) {
-      e.files = 'The name field is required.';
-    }
-    console.log(e);
+    // if (form.files.length == 0) {
+    //   e.files = 'The name field is required.';
+    // }
     setErrors(e);
   }, [form]);
 
@@ -114,7 +114,31 @@ const FormAddProduct = ({
       validWhen: false,
       message: 'The name field is required.',
     },
+    {
+      field: 'description',
+      method: 'isLength',
+      args: [{ min: 5000 }],
+      validWhen: false,
+      message: 'The name description must be at most 5000 characters.',
+    },
+    {
+      field: 'files',
+      method: fileValidate,
+      validWhen: true,
+      message: 'The files field must be less than 6.',
+    },
+    {
+      field: 'files',
+      method: (value) => value.length != 0,
+      validWhen: true,
+      message: 'The files field is required.',
+    },
   ];
+  const delItemFile = (idItem) => {
+    let arrFile = form.files;
+    arrFile = arrFile.filter((item, index) => index != idItem);
+    setForm({ ...form, files: arrFile });
+  };
   const validator = new Validator(rules);
   return (
     <>
@@ -169,12 +193,13 @@ const FormAddProduct = ({
                   }}
                 />
                 <UploadControl
-                  form={form}
-                  setForm={setForm}
+                  addFile={(file) => {
+                    setForm({ ...form, files: [...form.files, ...file] });
+                  }}
                   title_upload="Thêm hình ảnh sản phẩm"
                   classname="upload_tagHtml"
                 />
-
+                <ListFileImage files={form.files} delItemFile={delItemFile} />
                 {errors.files && touched && (
                   <p className="error">{errors.files}</p>
                 )}

@@ -6,6 +6,9 @@ import { managerProduct } from '../../api/index';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../../actions/products.action';
 import { showSuccessNotification } from '../../actions/notification.action';
+import { useState } from 'react';
+import DeleteConfirm from '../Popup/DeleteConfirm';
+import Popup from '../Popup/Popup';
 
 const TitleCardProduct = ({
   id,
@@ -14,6 +17,19 @@ const TitleCardProduct = ({
   name,
 }) => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const areSureDelete = (type) => {
+    if (type) {
+      managerProduct.removeProduct(id);
+      showSuccessNotification(
+        'Thông báo',
+        `Đã xóa sản phẩm ${name} thành công.`,
+      );
+      fetchProducts({});
+    }
+    setIsLoading(false);
+  };
   return (
     <>
       <Button
@@ -24,20 +40,19 @@ const TitleCardProduct = ({
         }}
         classname={button_classname.capNhat}
       />
-
       <Button
         title="Xóa"
         onClick={(e) => {
           e.preventDefault();
-          managerProduct.removeProduct(id);
-          showSuccessNotification(
-            'Thông báo',
-            `Đã xóa sản phẩm ${name} thành công.`,
-          );
-          fetchProducts({});
+          setIsLoading(true);
         }}
         classname={button_classname.xoaSP}
       />
+      {isLoading && (
+        <Popup>
+          <DeleteConfirm onConfirm={areSureDelete} />
+        </Popup>
+      )}
     </>
   );
 };
