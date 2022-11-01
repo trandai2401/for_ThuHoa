@@ -5,18 +5,15 @@ import { useSearchParams } from 'react-router-dom';
 import { queryToObject, toQuery } from '../../util';
 import { useContext } from 'react';
 import { UrlPage } from '../../context/UrlPage';
-const ItemDropdown = ({
-  title,
-  onClick,
-  code,
-  selectedItem,
-  code_dropdown,
-}) => {
-  const pathCurrent = window.location.pathname.slice(1);
+import { useEffect } from 'react';
+const ItemDropdown = ({ title, onClick, code, code_dropdown }) => {
   let [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const query = queryToObject(searchParams);
   const urlPage = useContext(UrlPage);
+  useEffect(() => {
+    query.manufacturerSelected = null;
+  }, [query, query.manufacturerSelected]);
   return (
     <>
       <p

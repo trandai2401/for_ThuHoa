@@ -33,7 +33,7 @@ const Navbar = ({
         />
         <Dropdown
           title="Hãng Sản Xuất"
-          items={datalist.manufacturer.items}
+          items={datalist.manufacturerCurent.items}
           onClick={changeManufacturerSelected}
           selectedItem={manufacturerSelected}
           code_dropdown="manufacturerSelected"
@@ -47,7 +47,7 @@ const mapstateToProps = (state) => {
   return {
     datalist: state.navbar,
     categorySlected: state.products.categorySlected,
-    manufacturerSelected: state.products.manufacturerSelected,
+    manufacturerCurent: state.products.manufacturerCurent,
   };
 };
 

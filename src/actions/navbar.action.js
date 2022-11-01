@@ -11,3 +11,9 @@ export const fetchNavbar = () => async (dispatch) => {
     payload: data,
   });
 };
+export const changeCategory = (data) => async (dispatch) => {
+  dispatch({
+    type: 'CHANGE_CATEGORY',
+    payload: data,
+  });
+};

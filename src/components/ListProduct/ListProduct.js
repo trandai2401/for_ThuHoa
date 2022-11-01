@@ -7,13 +7,15 @@ import Pagination from '../Pagination/Pagination';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import OutOfProduct from '../OutOfProduct/OutOfProduct';
 import { setTrueLoading, setFalseLoading } from '../../actions/spinner.action';
-
+import { changeCategory } from '../../actions/navbar.action';
 const ListProduct = ({
   products,
   fetchProducts,
   count,
   setTrueLoading,
   setFalseLoading,
+  changeCategory,
+  category,
 }) => {
   let [searchParams] = useSearchParams();
   const query = {
@@ -38,6 +40,10 @@ const ListProduct = ({
     count,
   );
 
+  useEffect(() => {
+    changeCategory(query.categorySelected);
+  }, [query.categorySelected, category]);
+
   const renderListProduct = () => {
     if (products.length === 0) {
       return <OutOfProduct />;
@@ -56,16 +62,14 @@ const ListProduct = ({
 
 const mapstateToProps = (state) => {
   return {
+    category: state.navbar.category.items.length,
     products: state.products.products,
     count: state.products.count,
-    pageSelected: state.products.pageSelected,
-    categorySelected: state.products.categorySlected,
-    manufacturerSelected: state.products.manufacturerSelected,
-    searchProduct: state.products.searchProduct,
   };
 };
 export default connect(mapstateToProps, {
   fetchProducts,
   setTrueLoading,
   setFalseLoading,
+  changeCategory,
 })(ListProduct);

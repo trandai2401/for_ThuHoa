@@ -6,6 +6,10 @@ const initValue = {
     title: 'Hang San Xuat',
     items: [],
   },
+  manufacturerCurent: {
+    title: 'Hang San Xuat',
+    items: [],
+  },
 };
 const navbarReducer = (state = initValue, action) => {
   switch (action.type) {
@@ -19,7 +23,22 @@ const navbarReducer = (state = initValue, action) => {
           title: 'Hang San Xuat',
           items: [...action.payload.dataManufacturer],
         },
+        manufacturerCurent: {
+          title: 'Hang San Xuat',
+          items: [],
+        },
       };
+    case 'CHANGE_CATEGORY':
+      const cate = action.payload;
+
+      const manuArray = state.category.items.find((item) => item.code === cate);
+      state.manufacturerCurent.items = manuArray?.manu_items;
+      if (cate === null)
+        state.manufacturerCurent.items = state.manufacturer.items;
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }

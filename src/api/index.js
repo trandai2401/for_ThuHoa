@@ -102,8 +102,11 @@ export const managerProduct = {
     data.append('manufacturer', form.manufacturer);
     data.append('price', form.price);
     data.append('description', form.description);
-    data.append('illustration', form.illustration);
-    console.log(form.images);
+    if (form.illustrationFiles === null) {
+      data.append('illustration', form.illustration);
+    } else {
+      data.append('files', form.illustrationFiles);
+    }
 
     form.images.forEach((element) => {
       data.append('images[]', element);
